@@ -1,0 +1,33 @@
+Администрирование Windows по PowerShell
+1. Создание пользователя (Create-User.ps1)
+Проверка пользователей до: Get-LocalUser
+Запуск скрипта: .\Create-User.ps1
+Проверка пользователей после: Get-LocalUser
+Проверка группы: Get-LocalGroupMember -Group "Administrators"
+
+2. Отключение USB-накопителей (Disable-USB.ps1)
+Вставить флешку и убедиться, что она определяется в Проводнике
+Запуск скрипта: .\Disable-USB.ps1
+Перезагрузка виртуальной машины или вынуть флешку через отображение значков
+Проверка в реестре: regedit
+Путь: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USBSTOR
+Параметр: Start = 4
+
+3. Очистка временных файлов (Clear-Temp.ps1)
+Открыть папку %TEMP%
+Запуск скрипта: .\Clear-Temp.ps1
+Проверка папки %TEMP% после
+
+4. Автозапуск приложения (Set-App-Autostart.ps1)
+Открыть реестр: regedit
+Путь: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+Проверка до — ключа ещё нет
+Запуск скрипта: .\Set-App-Autostart.ps1
+Проверка после — появился ключ, например:
+NoteAutoStart = "C:\Program Files\Notepad++\notepad++.exe"
+
+5. Настройка брандмауэра (Configure-Firewall.ps1)
+Проверка текущих правил: Get-NetFirewallRule
+Запуск скрипта: .\Configure-Firewall.ps1
+Проверка ПОСЛЕ: Get-NetFirewallRule
+(Должны быть только Allow RDP и Allow HTTP)
